@@ -1,0 +1,49 @@
+# This will be a basic workflow to get started with github Actions!
+name: A basic Workflow
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the specified branches
+  push:
+    branches: [ "main" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+  # Workflow dispatch allows you to run this workflow manually from the actions tab
+  workflow_dispatch:
+
+# Workflow run is made up of one or more jobs that can be run sequentially or in parallel
+jobs:
+  # This workflow will contain a single job called "build"
+  build-app:
+    # The type of runner that the job will run on 
+    runs-on: ubuntu-latest
+    
+    # These represent a sequence of tasks that will be executed
+    steps: 
+      - uses: actions/checkout@v3
+      
+      # Runs a single command in the runner shell
+      - name: Run a one-line script
+        run: echo Hello, World!
+
+      # Same thing but runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+  build-api:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Building API on macos"
+
+  build-db:
+    # This is a dependency for a job
+    needs: build-app
+    runs-on: macos-latest
+    steps:
+      -run: echo "Building the database bro!"
+
+
