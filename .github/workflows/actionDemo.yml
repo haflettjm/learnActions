@@ -44,6 +44,6 @@ jobs:
     needs: build-app
     runs-on: macos-latest
     steps:
-      -run: echo "Building the database bro!"
+      - run: echo "Building the database bro!"
 
 
